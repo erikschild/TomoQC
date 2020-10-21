@@ -1,0 +1,24 @@
+{
+    "id": "2FF6B727",
+    "path": "E:/Work/STARprotocols paper/TomoQC/R/QC.function.only.R",
+    "project_path": "R/QC.function.only.R",
+    "type": "r_source",
+    "hash": "1495091802",
+    "contents": "",
+    "dirty": true,
+    "created": 1602854214053.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "cursorPosition": "83,0",
+        "scrollLine": "0"
+    },
+    "folds": "16|156|81|0|\n",
+    "lastKnownWriteTime": 1603203394,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1603273778126,
+    "read_only": false,
+    "read_only_alternatives": []
+}

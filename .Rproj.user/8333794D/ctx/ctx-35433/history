@@ -1,0 +1,8 @@
+library(TomoQC)
+x <- read_delim("E:/Work/Tomodata/L4.2.1_ES44/HUB-ES-t044_HKWWNBGXG_S5_R2.TranscriptCounts.tsv", delim = "\t")
+#Reads
+y <- read_delim("E:/Work/Tomodata/L4.2.1_ES44/HUB-ES-t044_HKWWNBGXG_S5_R2.ReadCounts.tsv", delim = "\t")
+#UMIs
+z <- read_delim("E:/Work/Tomodata/L4.2.1_ES44/HUB-ES-t044_HKWWNBGXG_S5_R2.BarcodeCounts.tsv", delim = "\t")
+TomoQC::tomo_diagnostic(x,y,x,"HENK")
+TomoQC::tomo_diagnostic(x,y,x,"honk")
