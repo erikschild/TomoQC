@@ -1,10 +1,9 @@
 #' @title tomo_diagnostic
-#' @import patchwork
+#' @import patchwork ggplot2
 #' @importFrom stats na.omit
 #' @importFrom tibble tibble
 #' @importFrom tibble column_to_rownames
 #' @importFrom tidyr pivot_longer
-#' @importFrom ggplot2 ggplot
 #' @importFrom scales log2_trans
 #' @param transcripts data.frame containing transcript counts (reads corrected using UMIs), with gene names as rownames
 #' @param reads data.frame containing read counts, with gene names as rownames

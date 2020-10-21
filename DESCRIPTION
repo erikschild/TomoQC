@@ -4,8 +4,7 @@ Title: Simple QC for tomo-seq
 Version: 0.1.0
 Author: Erik Schild
 Maintainer: Erik Schild <erikschild@live.nl>
-Description: Provides a simple quality control for tomosequencing experiments.
-Quality of sample can be assessed per slice, as well as the saturation of sequencing depth of the library.
+Description: Provides a simple quality control for tomosequencing experiments. Quality of sample can be assessed per slice, as well as the saturation of sequencing depth of the library.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
