@@ -1,6 +1,11 @@
 #' @title tomo_diagnostic
-#' @import tibble dplyr tidyr ggplot2 scales patchwork
+#' @import patchwork
 #' @importFrom stats na.omit
+#' @importFrom tibble tibble
+#' @importFrom tibble column_to_rownames
+#' @importFrom tidyr pivot_longer
+#' @importFrom ggplot2 ggplot
+#' @importFrom scales log2_trans
 #' @param transcripts data.frame containing transcript counts (reads corrected using UMIs), with gene names as rownames
 #' @param reads data.frame containing read counts, with gene names as rownames
 #' @param umis data.frame containing UMI counts, with genen names as rownames
@@ -35,7 +40,7 @@ tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", c
   overseq_plot <- ggplot2::ggplot(os, aes(x = value))+
     geom_histogram(binwidth = 0.1, fill = "deepskyblue") +
     labs(title = "Oversequencing",x = "Reads per UMI", y = "Occurrence") +
-    scale_x_continuous(trans = log2_trans(), limits = c(0.9,16), breaks = c(1,2,4,8,16))+
+    scale_x_continuous(trans = scales::log2_trans(), limits = c(0.9,16), breaks = c(1,2,4,8,16))+
     lighttheme
 
   spike_in_counts <- dplyr::filter(transcripts, grepl("ERCC",transcripts$GENEID))
