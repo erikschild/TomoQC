@@ -26,7 +26,7 @@ would be based on many more genes
 
 ``` r
 library(TomoQC)
-  tomo_quality(example_data$ex_transcripts,
+  example <- tomo_quality(example_data$ex_transcripts,
                example_data$ex_reads,
                example_data$ex_barcodes,
                cutoff_spike = 0.2,
@@ -36,17 +36,15 @@ library(TomoQC)
 
 ![](man/figures/README-example-1.png)<!-- -->
 
-    #> # A tibble: 96 x 4
-    #>    Slices Genes Spike_ins_percentage Wormslice
-    #>     <dbl> <dbl>                <dbl> <chr>    
-    #>  1      1    38                 53.7 not_worm 
-    #>  2      2    34                 57.8 not_worm 
-    #>  3      3    49                 33.5 not_worm 
-    #>  4      4    43                 51.0 not_worm 
-    #>  5      5    34                 38.8 not_worm 
-    #>  6      6    33                 60.4 not_worm 
-    #>  7      7    34                 51.8 not_worm 
-    #>  8      8    25                 68.4 not_worm 
-    #>  9      9    47                 54.7 not_worm 
-    #> 10     10    22                 69.1 not_worm 
-    #> # ... with 86 more rows
+``` r
+  head(example)
+#> # A tibble: 6 x 4
+#>   Slices Genes Spike_ins_percentage Wormslice
+#>    <dbl> <dbl>                <dbl> <chr>    
+#> 1      1    38                 53.7 not_worm 
+#> 2      2    34                 57.8 not_worm 
+#> 3      3    49                 33.5 not_worm 
+#> 4      4    43                 51.0 not_worm 
+#> 5      5    34                 38.8 not_worm 
+#> 6      6    33                 60.4 not_worm
+```
