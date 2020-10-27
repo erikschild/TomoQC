@@ -20,7 +20,7 @@ TomoQC is available to install from github:
   
 ```{r gh-installation, eval = FALSE}
   # install.packages("devtools")
-  devtools::install_github("thomasp85/patchwork")
+  devtools::install_github("erikschild/TomoQC")
 ```
   
 # Example
