@@ -46,10 +46,10 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
                    Genes =  colSums(dplyr::filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
                    Spike_ins_percentage = (colSums(spike_in_counts[,-1])/colSums(transcripts[,-1])*100),
                    Wormslice = "Worm")
-  inform$Wormslice[which(inform$fraction >cutoff_spike | inform$genes < cutoff_genes)] <- "not_worm"
+  inform$Wormslice[which(inform$Spike_ins_percentage >cutoff_spike | inform$genes < cutoff_genes)] <- "not_worm"
 
   if(spike_ins){
-    p <-   ggplot2::ggplot(inform, aes(x = .data$slices, y = .data$fraction, fill = .data$Wormslice))+
+    p <-   ggplot2::ggplot(inform, aes(x = .data$slices, y = .data$Spike_ins_percentage, fill = .data$Wormslice))+
       geom_col(width = 0.8)+
       geom_hline(aes(yintercept=cutoff_spike), col = "Gray10", size = 1)+
       ggtitle("Percentage of spike-ins in total reads per slice")+
