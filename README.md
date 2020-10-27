@@ -6,7 +6,7 @@ Read, UMI , and Transcript count tables are required for the function to run.
 #Installation
 TomoQC is available to install from github:
 
-```R
+```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("thomasp85/patchwork")
 ```
