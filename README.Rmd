@@ -1,6 +1,4 @@
 ---
-title: "TomoQC"
-author: "Erik Schild"
 output: github_document
 ---
 
