@@ -12,13 +12,13 @@
 #' @param cutoff_spike a cutoff value for spike-in ratio (ranges from 0 to 1)
 #' @param cutoff_genes a cutoff value for minimum unique gene count per slice
 #' @param spike_ins Controls whether spike-ins were used, and thus if a spike-ins percentage plot should be generated. Default = TRUE
-#' @param barcodes this is probably gone in the final version
 #' @return Provides various QC plots to quickly assess the quality of tomo-seq data
+
 
 #' @export
 
 
-tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", cutoff_spike = 0.25, cutoff_genes = 2000, spike_ins = T, barcodes = c(1:96)){
+tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", cutoff_spike = 0.25, cutoff_genes = 2000, spike_ins = T){
 
 
   lighttheme <-   theme(axis.line = element_line(colour="Gray10", size = 1),
@@ -44,7 +44,7 @@ tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", c
 
   spike_in_counts <- dplyr::filter(transcripts, grepl("ERCC",transcripts$GENEID))
 
-  inform <- tibble::tibble("slices" = rank(barcodes),
+  inform <- tibble::tibble("slices" = rank(1:96),
                    genes =  colSums(dplyr::filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
                    fraction = colSums(spike_in_counts[,-1])/colSums(transcripts[,-1]),
                    Wormslice = "Worm")
@@ -74,7 +74,7 @@ tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", c
     lighttheme+
     theme(legend.position = "none", axis.text.x = element_text(size = 8)) +
     labs(title = "Unique genes")+
-    coord_cartesian(ylim = c(100,20000))
+    coord_cartesian(ylim = c(10,20000))
 
   if(spike_ins){
     print(overseq_plot + (p + q + plot_layout(ncol = 1)) +  plot_layout(ncol = 2, widths = c(1,3))+ plot_annotation(title = plot_title))
@@ -84,5 +84,3 @@ tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", c
 
   return(inform)
 }
-
-

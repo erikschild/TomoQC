@@ -11,8 +11,7 @@ tomo_diagnostic(
   plot_title = "QC plots",
   cutoff_spike = 0.25,
   cutoff_genes = 2000,
-  spike_ins = T,
-  barcodes = c(1:96)
+  spike_ins = T
 )
 }
 \arguments{
@@ -29,8 +28,6 @@ tomo_diagnostic(
 \item{cutoff_genes}{a cutoff value for minimum unique gene count per slice}
 
 \item{spike_ins}{Controls whether spike-ins were used, and thus if a spike-ins percentage plot should be generated. Default = TRUE}
-
-\item{barcodes}{this is probably gone in the final version}
 }
 \value{
 Provides various QC plots to quickly assess the quality of tomo-seq data
