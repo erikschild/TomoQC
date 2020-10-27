@@ -6,8 +6,8 @@ A quick quality check for tomosequencing data
 ## Overview
 
 The goal of TomoQC is to provide a quick, simple quality control to
-assess the quality of a tomosequencing sample. Read, UMI , and
-Transcript count tables are required for the function to run.
+assess the quality of a tomosequencing sample. Read, UMI, and Transcript
+count tables are required for the function to run.
 
 ## Installation
 
@@ -37,16 +37,16 @@ library(TomoQC)
 ![](man/figures/README-example-1.png)<!-- -->
 
     #> # A tibble: 96 x 4
-    #>    slices genes fraction Wormslice
-    #>     <dbl> <dbl>    <dbl> <chr>    
-    #>  1      1    38    0.537 not_worm 
-    #>  2      2    34    0.578 not_worm 
-    #>  3      3    49    0.335 not_worm 
-    #>  4      4    43    0.510 not_worm 
-    #>  5      5    34    0.388 not_worm 
-    #>  6      6    33    0.604 not_worm 
-    #>  7      7    34    0.518 not_worm 
-    #>  8      8    25    0.684 not_worm 
-    #>  9      9    47    0.547 not_worm 
-    #> 10     10    22    0.691 not_worm 
+    #>    Slices Genes Spike_ins_percentage Wormslice
+    #>     <dbl> <dbl>                <dbl> <chr>    
+    #>  1      1    38                 53.7 not_worm 
+    #>  2      2    34                 57.8 not_worm 
+    #>  3      3    49                 33.5 not_worm 
+    #>  4      4    43                 51.0 not_worm 
+    #>  5      5    34                 38.8 not_worm 
+    #>  6      6    33                 60.4 not_worm 
+    #>  7      7    34                 51.8 not_worm 
+    #>  8      8    25                 68.4 not_worm 
+    #>  9      9    47                 54.7 not_worm 
+    #> 10     10    22                 69.1 not_worm 
     #> # ... with 86 more rows
