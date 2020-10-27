@@ -1,11 +1,15 @@
 
+# TomoQC
+
+A quick quality check for tomosequencing data
+
 ## Overview
 
 The goal of TomoQC is to provide a quick, simple quality control to
 assess the quality of a tomosequencing sample. Read, UMI , and
 Transcript count tables are required for the function to run.
 
-# Installation
+## Installation
 
 TomoQC is available to install from github:
 
@@ -14,7 +18,7 @@ TomoQC is available to install from github:
   devtools::install_github("erikschild/TomoQC")
 ```
 
-# Example
+## Example
 
 The package includes a 1000 gene dummy dataset which gives an idea of
 how output may look. Note that in a real experiment, the data input
