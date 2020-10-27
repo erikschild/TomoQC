@@ -36,7 +36,7 @@ tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", c
   os <- (tibble::column_to_rownames(reads, colnames(reads[1]))/tibble::column_to_rownames(umis, colnames(umis[1])))
     os <- tidyr::pivot_longer(os,cols = 1:96)
     os <- na.omit(os)
-  overseq_plot <- ggplot2::ggplot(os, aes(x = value))+
+  overseq_plot <- ggplot2::ggplot(os, aes(x = .data$value))+
     geom_histogram(binwidth = 0.1, fill = "deepskyblue") +
     labs(title = "Oversequencing",x = "Reads per UMI", y = "Occurrence") +
     scale_x_continuous(trans = scales::log2_trans(), limits = c(0.9,16), breaks = c(1,2,4,8,16))+
@@ -44,14 +44,14 @@ tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", c
 
   spike_in_counts <- dplyr::filter(transcripts, grepl("ERCC",transcripts$GENEID))
 
-  inform <- tibble::tibble(slices = rank(barcodes),
-                   genes =  colSums(filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
+  inform <- tibble::tibble("slices" = rank(barcodes),
+                   genes =  colSums(dplyr::filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
                    fraction = colSums(spike_in_counts[,-1])/colSums(transcripts[,-1]),
                    Wormslice = "Worm")
   inform$Wormslice[which(inform$fraction >cutoff_spike | inform$genes < cutoff_genes)] <- "not_worm"
 
   if(spike_ins){
-    p <-   ggplot2::ggplot(inform, aes(x = slices, y = fraction, fill = Wormslice))+
+    p <-   ggplot2::ggplot(inform, aes(x = .data$slices, y = .data$fraction, fill = .data$Wormslice))+
       geom_col(width = 0.8)+
       geom_hline(aes(yintercept=cutoff_spike), col = "Gray10", size = 1)+
       ggtitle("Percentage of spike-ins in total reads per slice")+
@@ -63,7 +63,7 @@ tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", c
       theme(legend.position = "none", axis.text.x = element_text(size = 8))
   }
 
-  q <- ggplot2::ggplot(inform, aes(x = slices, y = genes, fill = Wormslice)) +
+  q <- ggplot2::ggplot(inform, aes(x = .data$slices, y = .data$genes, fill = .data$Wormslice)) +
     geom_col(width = 0.8)+
     geom_hline(aes(yintercept=cutoff_genes), col = "Gray10", size = 1)+
     scale_fill_manual(values = c("Worm" = "deepskyblue", "not_worm" = "magenta"))+

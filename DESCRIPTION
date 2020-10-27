@@ -17,5 +17,3 @@ Imports:
     ggplot2,
     patchwork,
     scales
-Remotes:
-    thomasp85/patchwork
