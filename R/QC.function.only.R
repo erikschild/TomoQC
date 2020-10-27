@@ -1,4 +1,5 @@
-#' @title tomo_diagnostic
+#' @title Tomosequencing quality control function
+#'
 #' @import patchwork ggplot2
 #' @importFrom stats na.omit
 #' @importFrom tibble tibble
@@ -13,13 +14,10 @@
 #' @param cutoff_genes a cutoff value for minimum unique gene count per slice
 #' @param spike_ins Controls whether spike-ins were used, and thus if a spike-ins percentage plot should be generated. Default = TRUE
 #' @return Provides various QC plots to quickly assess the quality of tomo-seq data
-
-
 #' @export
 
 
-tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", cutoff_spike = 0.25, cutoff_genes = 2000, spike_ins = T){
-
+tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cutoff_spike = 0.25, cutoff_genes = 2000, spike_ins = T){
 
   lighttheme <-   theme(axis.line = element_line(colour="Gray10", size = 1),
                         axis.text = element_text(colour = "black"),
@@ -77,9 +75,13 @@ tomo_diagnostic <- function(transcripts, reads, umis, plot_title = "QC plots", c
     coord_cartesian(ylim = c(10,20000))
 
   if(spike_ins){
-    print(overseq_plot + (p + q + plot_layout(ncol = 1)) +  plot_layout(ncol = 2, widths = c(1,3))+ plot_annotation(title = plot_title))
+    suppressWarnings(
+      print(overseq_plot + (p + q + plot_layout(ncol = 1)) +  plot_layout(ncol = 2, widths = c(1,3))+ plot_annotation(title = plot_title))
+    )
   }else{
-    print(overseq_plot + (q + plot_layout(ncol = 1)) +  plot_layout(ncol = 2, widths = c(1,3))+ plot_annotation(title = plot_title))
+    suppressWarnings(
+      print(overseq_plot + (q + plot_layout(ncol = 1)) +  plot_layout(ncol = 2, widths = c(1,3))+ plot_annotation(title = plot_title))
+    )
   }
 
   return(inform)
