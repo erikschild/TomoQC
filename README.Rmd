@@ -14,7 +14,7 @@ A quick quality check for tomosequencing data
   
 ## Overview
 The goal of TomoQC is to provide a quick, simple quality control to assess the quality of a tomosequencing sample.
-Read, UMI , and Transcript count tables are required for the function to run.
+Read, UMI, and Transcript count tables are required for the function to run.
 
 ## Installation
 TomoQC is available to install from github:

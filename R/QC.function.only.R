@@ -6,18 +6,18 @@
 #' @importFrom tibble column_to_rownames
 #' @importFrom tidyr pivot_longer
 #' @importFrom scales log2_trans
-#' @param transcripts data.frame containing transcript counts (reads corrected using UMIs), with gene names as rownames
-#' @param reads data.frame containing read counts, with gene names as rownames
-#' @param umis data.frame containing UMI counts, with genen names as rownames
+#' @param transcripts data.frame containing transcript counts, with gene names in the first column
+#' @param reads data.frame containing read counts, with gene names in the first column
+#' @param umis data.frame containing UMI counts, with genen names in the first column
 #' @param plot_title a string to title the QC plot
-#' @param cutoff_spike a cutoff value for spike-in ratio (ranges from 0 to 1)
+#' @param cutoff_spike a cutoff value for spike-in percentage of total Transcripts (ranges from 0 to 100)
 #' @param cutoff_genes a cutoff value for minimum unique gene count per slice
 #' @param spike_ins Controls whether spike-ins were used, and thus if a spike-ins percentage plot should be generated. Default = TRUE
 #' @return Provides various QC plots to quickly assess the quality of tomo-seq data
 #' @export
 
 
-tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cutoff_spike = 0.25, cutoff_genes = 2000, spike_ins = T){
+tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cutoff_spike = 25, cutoff_genes = 2000, spike_ins = T){
 
   lighttheme <-   theme(axis.line = element_line(colour="Gray10", size = 1),
                         axis.text = element_text(colour = "black"),
@@ -43,8 +43,8 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
   spike_in_counts <- dplyr::filter(transcripts, grepl("ERCC",transcripts$GENEID))
 
   inform <- tibble::tibble("slices" = rank(1:96),
-                   genes =  colSums(dplyr::filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
-                   fraction = colSums(spike_in_counts[,-1])/colSums(transcripts[,-1]),
+                   Genes =  colSums(dplyr::filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
+                   Spike_ins_percentage = (colSums(spike_in_counts[,-1])/colSums(transcripts[,-1])*100),
                    Wormslice = "Worm")
   inform$Wormslice[which(inform$fraction >cutoff_spike | inform$genes < cutoff_genes)] <- "not_worm"
 
@@ -55,7 +55,7 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
       ggtitle("Percentage of spike-ins in total reads per slice")+
       scale_fill_manual(values = c("Worm" = "deepskyblue",  "not_worm" = "magenta"))+
       scale_x_continuous(breaks = seq(1,96, by = 5))+
-      scale_y_continuous(name = "Percentage", breaks = c(0, 0.25, 0.50, 0.75, 1.00), labels = c("0%", "25%", "50%", "75%", "100%"), expand = c(0,0))+
+      scale_y_continuous(name = "Percentage", breaks = c(0, 25, 50, 75, 100), labels = c("0%", "25%", "50%", "75%", "100%"), expand = c(0,0))+
       xlab("Slices")+
       lighttheme+
       theme(legend.position = "none", axis.text.x = element_text(size = 8))
