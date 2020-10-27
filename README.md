@@ -1,18 +1,17 @@
-TomoQC
-================
-Erik Schild
 
-# TomoQC
+## Overview
 
-Tomosequencing QC function \# Overview The goal of TomoQC is to provide
-a quick, simple quality control to assess the quality of a
-tomosequencing sample. Read, UMI , and Transcript count tables are
-required for the function to run. \#Installation TomoQC is available to
-install from github:
+The goal of TomoQC is to provide a quick, simple quality control to
+assess the quality of a tomosequencing sample. Read, UMI , and
+Transcript count tables are required for the function to run.
+
+# Installation
+
+TomoQC is available to install from github:
 
 ``` r
   # install.packages("devtools")
-  devtools::install_github("thomasp85/patchwork")
+  devtools::install_github("erikschild/TomoQC")
 ```
 
 # Example
@@ -23,7 +22,12 @@ would be based on many more genes
 
 ``` r
 library(TomoQC)
-  tomo_quality(example_data$ex_transcripts, example_data$ex_reads, example_data$ex_barcodes, cutoff_spike = 0.2, cutoff_genes = 90, plot_title = "Example output")
+  tomo_quality(example_data$ex_transcripts,
+               example_data$ex_reads,
+               example_data$ex_barcodes,
+               cutoff_spike = 0.2,
+               cutoff_genes = 90,
+               plot_title = "Example output")
 ```
 
 ![](man/figures/README-example-1.png)<!-- -->

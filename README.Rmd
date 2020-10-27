@@ -10,12 +10,11 @@ knitr::opts_chunk$set(
   message = FALSE)
 ```
   
-# TomoQC
-Tomosequencing QC function
-# Overview
+## Overview
 The goal of TomoQC is to provide a quick, simple quality control to assess the quality of a tomosequencing sample.
 Read, UMI , and Transcript count tables are required for the function to run.
-#Installation
+
+# Installation
 TomoQC is available to install from github:
   
 ```{r gh-installation, eval = FALSE}
