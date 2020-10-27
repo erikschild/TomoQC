@@ -1,7 +1,6 @@
 ---
-title: "README.Rmd"
+title: "TomoQC"
 author: "Erik Schild"
-date: "27-10-2020"
 output: github_document
 ---
 

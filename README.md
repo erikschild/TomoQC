@@ -1,7 +1,6 @@
-README.Rmd
+TomoQC
 ================
 Erik Schild
-27-10-2020
 
 # TomoQC
 
