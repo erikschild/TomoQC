@@ -52,7 +52,7 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
     p <-   ggplot2::ggplot(inform, aes(x = .data$Slices, y = .data$Spike_ins_percentage, fill = .data$Wormslice))+
       geom_col(width = 0.8)+
       geom_hline(aes(yintercept=cutoff_spike), col = "Gray10", size = 1)+
-      ggtitle("Percentage of spike-ins in total reads per slice")+
+      ggtitle("Spike-ins per slice")+
       scale_fill_manual(values = c("Worm" = "deepskyblue",  "not_worm" = "magenta"))+
       scale_x_continuous(breaks = seq(1,96, by = 5))+
       scale_y_continuous(name = "Percentage", breaks = c(0, 25, 50, 75, 100), labels = c("0%", "25%", "50%", "75%", "100%"), expand = c(0,0))+
@@ -71,7 +71,7 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
     ylab("Genes")+
     lighttheme+
     theme(legend.position = "none", axis.text.x = element_text(size = 8)) +
-    labs(title = "Unique genes")+
+    labs(title = "Unique genes per slice")+
     coord_cartesian(ylim = c(10,20000))
 
   if(spike_ins){

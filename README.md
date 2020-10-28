@@ -24,6 +24,24 @@ The package includes a 1000 gene dummy dataset which gives an idea of
 how output may look. Note that in a real experiment, the data input
 would be based on many more genes.
 
+### Oversequencing
+
+Plots a histogram of UMIs/reads per gene. Any occurrence of a value \>1
+indicates multiple reads originating from the same RNA molecule. The
+further the peak of the histogram shifts to the right, the more
+saturated sequencing depth is.
+
+### Spike-ins
+
+Plots the percentage of all reads in a column mapping to ERCC spike-ins.
+A high percentage likely means no sample was present, and vice versa
+(lower = better).
+
+### Unique genes
+
+The amount of unique mapped genes per column. More unique genes are
+expected to map where sample was present (higher = better).
+
 ``` r
 library(TomoQC)
 example <- tomo_quality(transcripts = example_data$ex_transcripts,
