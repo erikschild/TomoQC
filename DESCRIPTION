@@ -19,3 +19,5 @@ Imports:
     scales
 Example: 
     TomoQC::tomo_quality(example_data$ex_transcripts, example_data$ex_reads, example_data$ex_barcodes, cutoff_spike = 0.2, cutoff_genes = 90, plot_title = "Example output")
+Suggests: 
+    covr
