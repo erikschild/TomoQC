@@ -9,8 +9,6 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   message = FALSE)
 ```
-
-
 <!-- badges: start -->
 [![R build status](https://github.com/erikschild/TomoQC/workflows/R-CMD-check/badge.svg)](https://github.com/erikschild/TomoQC/actions)
 <!-- badges: end -->
