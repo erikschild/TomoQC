@@ -9,21 +9,21 @@ tomo_quality(
   reads,
   umis,
   plot_title = "QC plots",
-  cutoff_spike = 0.25,
+  cutoff_spike = 25,
   cutoff_genes = 2000,
   spike_ins = T
 )
 }
 \arguments{
-\item{transcripts}{data.frame containing transcript counts (reads corrected using UMIs), with gene names as rownames}
+\item{transcripts}{data.frame containing transcript counts, with gene names in the first column}
 
-\item{reads}{data.frame containing read counts, with gene names as rownames}
+\item{reads}{data.frame containing read counts, with gene names in the first column}
 
-\item{umis}{data.frame containing UMI counts, with genen names as rownames}
+\item{umis}{data.frame containing UMI counts, with genen names in the first column}
 
 \item{plot_title}{a string to title the QC plot}
 
-\item{cutoff_spike}{a cutoff value for spike-in ratio (ranges from 0 to 1)}
+\item{cutoff_spike}{a cutoff value for spike-in percentage of total Transcripts (ranges from 0 to 100)}
 
 \item{cutoff_genes}{a cutoff value for minimum unique gene count per slice}
 
