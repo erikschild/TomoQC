@@ -1,4 +1,10 @@
 
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/erikschild/TomoQC/workflows/R-CMD-check/badge.svg)](https://github.com/erikschild/TomoQC/actions)
+<!-- badges: end -->
+
 # TomoQC
 
 A quick quality check for tomosequencing data
