@@ -42,14 +42,14 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
 
   spike_in_counts <- dplyr::filter(transcripts, grepl("ERCC",transcripts$GENEID))
 
-  inform <- tibble::tibble("Slices" = rank(1:96),
+  inform <- tibble::tibble("Slice" = rank(1:96),
                    Genes =  colSums(dplyr::filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
                    Spike_ins_percentage = (colSums(spike_in_counts[,-1])/colSums(transcripts[,-1])*100),
                    Wormslice = "Worm")
   inform$Wormslice[which(inform$Spike_ins_percentage >cutoff_spike | inform$Genes < cutoff_genes)] <- "not_worm"
 
   if(spike_ins){
-    p <-   ggplot2::ggplot(inform, aes(x = .data$Slices, y = .data$Spike_ins_percentage, fill = .data$Wormslice))+
+    p <-   ggplot2::ggplot(inform, aes(x = .data$Slice, y = .data$Spike_ins_percentage, fill = .data$Wormslice))+
       geom_col(width = 0.8)+
       geom_hline(aes(yintercept=cutoff_spike), col = "Gray10", size = 1)+
       ggtitle("Spike-ins per slice")+
@@ -61,7 +61,7 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
       theme(legend.position = "none", axis.text.x = element_text(size = 8))
   }
 
-  q <- ggplot2::ggplot(inform, aes(x = .data$Slices, y = .data$Genes, fill = .data$Wormslice)) +
+  q <- ggplot2::ggplot(inform, aes(x = .data$Slice, y = .data$Genes, fill = .data$Wormslice)) +
     geom_col(width = 0.8)+
     geom_hline(aes(yintercept=cutoff_genes), col = "Gray10", size = 1)+
     scale_fill_manual(values = c("Worm" = "deepskyblue", "not_worm" = "magenta"))+
