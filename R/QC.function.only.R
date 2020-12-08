@@ -17,7 +17,7 @@
 #' @export
 
 
-tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cutoff_spike = 25, cutoff_genes = 2000, spike_ins = T){
+tomo_quality <- function(transcripts = example_data$transcripts, reads = example_data$reads, umis = example_data$UMIs, plot_title = "QC plots", cutoff_spike = 25, cutoff_genes = 100, spike_ins = T){
 
   QC_theme <-   theme(axis.line = element_line(colour="Gray10", size = 1),
                       axis.text = element_text(colour = "black"),
