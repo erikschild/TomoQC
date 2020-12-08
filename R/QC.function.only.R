@@ -35,7 +35,7 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
   os <- tidyr::pivot_longer(os,cols = 1:96)
   os <- na.omit(os)
   overseq_plot <- ggplot2::ggplot(os, aes(x = .data$value))+
-    geom_histogram(binwidth = 0.1, fill = "lue") +
+    geom_histogram(binwidth = 0.1, fill = "Blue") +
     labs(title = "Oversequencing",x = "Reads per UMI", y = "Occurrence") +
     scale_x_continuous(trans = scales::log2_trans(), limits = c(0.9,16), breaks = c(1,2,4,8,16))+
     QC_theme
@@ -53,7 +53,7 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
       geom_col(width = 0.8)+
       geom_hline(aes(yintercept=cutoff_spike), col = "Gray10", size = 1)+
       ggtitle("Spike-ins per slice")+
-      scale_fill_manual(values = c("Worm" = "lue",  "not_worm" = "darkorange"))+
+      scale_fill_manual(values = c("Worm" = "Blue",  "not_worm" = "darkorange"))+
       scale_x_continuous(breaks = seq(1,96, by = 5))+
       scale_y_continuous(name = "Percentage", breaks = c(0, 25, 50, 75, 100), labels = c("0%", "25%", "50%", "75%", "100%"), expand = c(0,0))+
       xlab("Slices")+
@@ -64,7 +64,7 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
   q <- ggplot2::ggplot(inform, aes(x = .data$Slice, y = .data$Genes, fill = .data$Wormslice)) +
     geom_col(width = 0.8)+
     geom_hline(aes(yintercept=cutoff_genes), col = "Gray10", size = 1)+
-    scale_fill_manual(values = c("Worm" = "lue", "not_worm" = "darkorange"))+
+    scale_fill_manual(values = c("Worm" = "Blue", "not_worm" = "darkorange"))+
     scale_y_log10() +
     scale_x_continuous(breaks = seq(1,96, by = 5))+
     xlab("Slices")+
