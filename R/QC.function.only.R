@@ -17,35 +17,39 @@
 #' @export
 
 
-tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cutoff_spike = 25, cutoff_genes = 2000, spike_ins = T){
+tomo_quality <- function(transcripts = example_data$transcripts, reads = example_data$reads, umis = example_data$UMIs, plot_title = "QC plots", cutoff_spike = 25, cutoff_genes = 100, spike_ins = T){
 
-  lighttheme <-   theme(axis.line = element_line(colour="Gray10", size = 1),
-                        axis.text = element_text(colour = "black"),
-                        panel.grid = element_blank(),
-                        plot.background = element_rect(fill = "white"),
-                        panel.background = element_rect(fill = "white"),
-                        legend.background = element_rect(fill = "white"),
-                        legend.key = element_rect(fill = "white", colour = "white"),
-                        strip.background = element_rect(fill = "gray80"),
-                        strip.text = element_text(colour = "black"),
-                        text = element_text(colour = "black", family = "sans"))
+  QC_theme <-   theme(axis.line = element_line(colour="Gray10", size = 1),
+                      axis.text = element_text(colour = "black"),
+                      panel.grid = element_blank(),
+                      plot.background = element_rect(fill = "white"),
+                      panel.background = element_rect(fill = "white"),
+                      legend.background = element_rect(fill = "white"),
+                      legend.key = element_rect(fill = "white", colour = "white"),
+                      strip.background = element_rect(fill = "gray80"),
+                      strip.text = element_text(colour = "black"),
+                      text = element_text(colour = "black", family = "sans"))
 
 
   os <- (tibble::column_to_rownames(reads, colnames(reads[1]))/tibble::column_to_rownames(umis, colnames(umis[1])))
-    os <- tidyr::pivot_longer(os,cols = 1:96)
-    os <- na.omit(os)
+  os <- tidyr::pivot_longer(os,cols = 1:96)
+  os <- na.omit(os)
   overseq_plot <- ggplot2::ggplot(os, aes(x = .data$value))+
+<<<<<<< HEAD
     geom_histogram(binwidth = 0.1, fill = "blue") +
+=======
+    geom_histogram(binwidth = 0.1, fill = "Blue") +
+>>>>>>> 314a0eb42de58a58c953385ef68609ca203afdde
     labs(title = "Oversequencing",x = "Reads per UMI", y = "Occurrence") +
     scale_x_continuous(trans = scales::log2_trans(), limits = c(0.9,16), breaks = c(1,2,4,8,16))+
-    lighttheme
+    QC_theme
 
   spike_in_counts <- dplyr::filter(transcripts, grepl("ERCC",transcripts$GENEID))
 
   inform <- tibble::tibble("Slice" = rank(1:96),
-                   Genes =  colSums(dplyr::filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
-                   Spike_ins_percentage = (colSums(spike_in_counts[,-1])/colSums(transcripts[,-1])*100),
-                   Wormslice = "Worm")
+                           Genes =  colSums(dplyr::filter(transcripts, !grepl("ERCC",transcripts$GENEID))[,-1]>0),
+                           Spike_ins_percentage = (colSums(spike_in_counts[,-1])/colSums(transcripts[,-1])*100),
+                           Wormslice = "Worm")
   inform$Wormslice[which(inform$Spike_ins_percentage >cutoff_spike | inform$Genes < cutoff_genes)] <- "not_worm"
 
   if(spike_ins){
@@ -53,23 +57,31 @@ tomo_quality <- function(transcripts, reads, umis, plot_title = "QC plots", cuto
       geom_col(width = 0.8)+
       geom_hline(aes(yintercept=cutoff_spike), col = "Gray10", size = 1)+
       ggtitle("Spike-ins per slice")+
+<<<<<<< HEAD
       scale_fill_manual(values = c("Worm" = "blue",  "not_worm" = "darkorange"))+
+=======
+      scale_fill_manual(values = c("Worm" = "Blue",  "not_worm" = "darkorange"))+
+>>>>>>> 314a0eb42de58a58c953385ef68609ca203afdde
       scale_x_continuous(breaks = seq(1,96, by = 5))+
       scale_y_continuous(name = "Percentage", breaks = c(0, 25, 50, 75, 100), labels = c("0%", "25%", "50%", "75%", "100%"), expand = c(0,0))+
       xlab("Slices")+
-      lighttheme+
+      QC_theme+
       theme(legend.position = "none", axis.text.x = element_text(size = 8))
   }
 
   q <- ggplot2::ggplot(inform, aes(x = .data$Slice, y = .data$Genes, fill = .data$Wormslice)) +
     geom_col(width = 0.8)+
     geom_hline(aes(yintercept=cutoff_genes), col = "Gray10", size = 1)+
+<<<<<<< HEAD
     scale_fill_manual(values = c("Worm" = "blue", "not_worm" = "darkorange"))+
+=======
+    scale_fill_manual(values = c("Worm" = "Blue", "not_worm" = "darkorange"))+
+>>>>>>> 314a0eb42de58a58c953385ef68609ca203afdde
     scale_y_log10() +
     scale_x_continuous(breaks = seq(1,96, by = 5))+
     xlab("Slices")+
     ylab("Genes")+
-    lighttheme+
+    QC_theme+
     theme(legend.position = "none", axis.text.x = element_text(size = 8)) +
     labs(title = "Unique genes per slice")+
     coord_cartesian(ylim = c(10,20000))
