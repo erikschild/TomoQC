@@ -50,9 +50,9 @@ expected to map where sample was present (higher = better).
 
 ``` r
 library(TomoQC)
-example <- tomo_quality(transcripts = example_data$ex_transcripts,
-                        reads = example_data$ex_reads,
-                        umis = example_data$ex_barcodes,
+example <- tomo_quality(transcripts = example_data$transcripts,
+                        reads = example_data$reads,
+                        umis = example_data$UMIs,
                         cutoff_spike = 20,
                         cutoff_genes = 90,
                         plot_title = "Example output")
