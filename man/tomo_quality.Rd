@@ -5,12 +5,12 @@
 \title{Tomosequencing quality control function}
 \usage{
 tomo_quality(
-  transcripts,
-  reads,
-  umis,
+  transcripts = example_data$transcripts,
+  reads = example_data$reads,
+  umis = example_data$UMIs,
   plot_title = "QC plots",
   cutoff_spike = 25,
-  cutoff_genes = 2000,
+  cutoff_genes = 100,
   spike_ins = T
 )
 }
