@@ -13,7 +13,9 @@ A quick quality check for tomosequencing data
 
 The goal of TomoQC is to provide a quick, simple quality control to
 assess the quality of a tomosequencing sample. Read, UMI, and Transcript
-count tables are required for the function to run.
+count tables are required for the function to run. Note: if using
+CelSeq2 primers, first select the 96 columns used out of the 384 CelSeq2
+primers. The function can only run on data with 96 columns.
 
 ## Installation
 
